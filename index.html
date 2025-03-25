@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoro's Kitchen</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #FFF3E0;
+            color: #333333;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('logo1.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            z-index: -1;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .main-content {
+            flex: 1 0 auto;
+            padding-bottom: 20px;
+        }
+
+        header {
+            background-color: #F4511E;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .logo {
+            max-width: 120px;
+            height: auto;
+            margin-right: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .head {
+            font-size: xx-large;
+            margin: 5;
+            text-align: middle;
+            padding: 0 50px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            margin: 1px 0;
+            text-align: right;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .banner {
+            background-color: #E23744;
+            color: white;
+            padding: 10px 0;
+            overflow: hidden;
+            position: relative;
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .banner-text {
+            display: inline-block;
+            animation: scroll 10s linear infinite;
+            font-weight: bold;
+            font-size: 1.1em;
+            white-space: nowrap;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(300%);
+            }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #F4511E;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+            color: #E23744;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 90%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* General button style */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.1s;
+            margin: 5px; /* Added spacing between buttons */
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .zomato-button {
+            background-color: #E23744;
+            color: white;
+        }
+
+        .zomato-button:hover {
+            background-color: #C62839;
+        }
+
+        .whatsapp-button {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #20B857;
+        }
+
+        .email-button {
+            background-color: #E23744;
+            color: white;
+        }
+
+        .email-button:hover {
+            background-color: #C62839;
+        }
+
+        /* New phone button style */
+        .phone-button {
+            background-color: #F4511E; /* Match the deeper orange theme */
+            color: white;
+        }
+
+        .phone-button:hover {
+            background-color: #E23744; /* Match the hover color of other buttons */
+        }
+
+        footer {
+            background-color: #F4511E;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            flex-shrink: 0;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-section {
+            text-align: left;
+            display: inline-block;
+            margin-top: 20px;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .menu-category {
+            cursor: pointer;
+            background-color: #F4511E;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .menu-category:hover {
+            background-color: #E23744;
+        }
+
+        .menu-items {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .menu-item {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .menu-item span {
+            font-weight: bold;
+            color: #333333;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-controls button {
+            background-color: #E23744;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .quantity-controls button:hover {
+            background-color: #C62839;
+        }
+
+        .quantity-display {
+            font-weight: bold;
+            min-width: 20px;
+            text-align: center;
+            color: #333333;
+        }
+
+        .order-now {
+            background-color: #E23744;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            display: none;
+            transition: background-color 0.3s;
+        }
+
+        .order-now:hover {
+            background-color: #C62839;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .cart-total {
+            font-weight: bold;
+            margin-top: 15px;
+            text-align: right;
+            color: #333333;
+        }
+
+        .place-order {
+            background-color: #E23744;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .place-order:hover {
+            background-color: #C62839;
+        }
+
+        /* Founders Section Styling */
+        .founders-section {
+            background-color: #F9E0D9;
+            border: 2px solid #F4511E;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .founders-section h3 {
+            color: #F4511E;
+            margin-bottom: 15px;
+        }
+
+        .founder {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .founder p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .logo {
+                max-width: 100px;
+                margin-bottom: 10px;
+            }
+            .head {
+                font-size: x-large;
+                text-align: left;
+            }
+            .tagline {
+                font-size: 1em;
+                text-align: left;
+            }
+            .menu-section {
+                width: 90%;
+            }
+            .menu-item {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            nav {
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: center;
+            }
+            .container {
+                max-width: 95%;
+                margin: 10px auto;
+            }
+            .founder {
+                max-width: 300px; /* Prevent stretching on mobile */
+                margin: 10px auto;
+            }
+        }
+    </style>
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || {};
+
+        function toggleMenuItems(id) {
+            const menuItems = document.getElementById(id);
+            menuItems.style.display = (menuItems.style.display === "none" || menuItems.style.display === "") ? "block" : "none";
+        }
+
+        function updateQuantity(itemId, change, price, itemName) {
+            const quantityDisplay = document.getElementById(itemId);
+            let currentQty = parseInt(quantityDisplay.innerText);
+            const orderBtn = quantityDisplay.parentElement.nextElementSibling;
+
+            currentQty = Math.max(0, currentQty + change);
+            quantityDisplay.innerText = currentQty;
+
+            if (currentQty > 0) {
+                cart[itemId] = { 
+                    quantity: currentQty, 
+                    price: price, 
+                    name: itemName 
+                };
+            } else {
+                delete cart[itemId];
+            }
+
+            updateOrderNowButtons();
+            updateCartDisplay();
+        }
+
+        function updateOrderNowButtons() {
+            const orderNowButtons = document.querySelectorAll('.order-now');
+            let cartValue = 0;
+
+            for (let itemId in cart) {
+                const item = cart[itemId];
+                cartValue += item.quantity * item.price;
+            }
+
+            orderNowButtons.forEach(button => {
+                const itemId = button.getAttribute('onclick').match(/'([^']+)'/)[1];
+                const quantityDisplay = document.getElementById(itemId);
+                const currentQty = parseInt(quantityDisplay.innerText);
+                if (cartValue > 0 && currentQty > 0) {
+                    button.style.display = 'inline-block';
+                } else {
+                    button.style.display = 'none';
+                }
+            });
+        }
+
+        function addToCart(itemId) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            window.location.href = 'order-form.html';
+        }
+
+        function updateCartDisplay() {
+            const cartContainer = document.getElementById('cart-items');
+            const emptyMsg = document.getElementById('cart-empty');
+            const placeOrderBtn = document.getElementById('place-order');
+            cartContainer.innerHTML = '';
+            let total = 0;
+
+            if (Object.keys(cart).length === 0) {
+                emptyMsg.style.display = 'block';
+                placeOrderBtn.style.display = 'none';
+            } else {
+                emptyMsg.style.display = 'none';
+                placeOrderBtn.style.display = 'block';
+                for (let itemId in cart) {
+                    const item = cart[itemId];
+                    total += item.quantity * item.price;
+                    cartContainer.innerHTML += `
+                        <div class="cart-item">
+                            <span>${item.name} x${item.quantity}</span>
+                            <span>₹${item.quantity * item.price}</span>
+                        </div>
+                    `;
+                }
+                cartContainer.innerHTML += `
+                    <div class="cart-total">
+                        Total: ₹${total}
+                    </div>
+                `;
+            }
+
+            updateOrderNowButtons();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            for (let itemId in cart) {
+                const quantityDisplay = document.getElementById(itemId);
+                if (quantityDisplay) {
+                    quantityDisplay.innerText = cart[itemId].quantity;
+                }
+            }
+            updateCartDisplay();
+        });
+
+        function placeOrder() {
+            if (Object.keys(cart).length > 0) {
+                localStorage.setItem('cart', JSON.stringify(cart));
+                window.location.href = 'order-form.html';
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="logo.png" alt="Zoro's Kitchen Logo" class="logo">
+            <h1 class="head">Zoro's Kitchen</h1>
+            <p class="tagline">Deliciousness Delivered to Your Doorstep</p>
+        </div>
+    </header>
+
+    <div class="banner">
+        <div class="banner-text">
+            Free Delivery Upto 3kms - Above 3kms ₹20 charged for every 2 kms<br>
+                            We undertake Party Orders T&C Apply
+        </div>
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#cart">Cart</a>
+        <a href="#support">Support / Contact Us</a>
+    </nav>
+
+    <div class="main-content">
+        <div id="home" class="container">
+            <h2>Welcome to Zoro's Kitchen</h2>
+            <p>We are now on Zomato! Order your favorite dishes now.</p>
+            <a class="button zomato-button" href="https://www.zomato.com/hyderabad/zoros-kitchen-boiguda-secunderabad/order" target="_blank">Order on Zomato</a>
+            <p>Need help or want to place an order? Contact us on WhatsApp!</p>
+            <a class="button whatsapp-button" href="https://api.whatsapp.com/send?phone=7993988779" target="_blank">Chat with us on WhatsApp</a>
+        </div>
+
+        <div id="menu" class="container">
+            <h2>Our Menu</h2>
+            <div class="menu-section">
+                <div class="menu-category" onclick="toggleMenuItems('maggie-items')" onkeypress="if(event.key === 'Enter' || event.key === ' ') toggleMenuItems('maggie-items')" tabindex="0">Maggie</div>
+                <div id="maggie-items" class="menu-items">
+                    <div class="menu-item">
+                        <span>Cheese Maggie - ₹50</span>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity('maggie1', -1, 50, 'Cheese Maggie')" aria-label="Decrease quantity of Cheese Maggie">-</button>
+                            <span id="maggie1" class="quantity-display">0</span>
+                            <button onclick="updateQuantity('maggie1', 1, 50, 'Cheese Maggie')" aria-label="Increase quantity of Cheese Maggie">+</button>
+                        </div>
+                        <button class="order-now" onclick="addToCart('maggie1')" aria-label="Order Cheese Maggie">Order Now</button>
+                    </div>
+                    <div class="menu-item">
+                        <span>Paneer Maggie - ₹60</span>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity('maggie2', -1, 60, 'Paneer Maggie')" aria-label="Decrease quantity of Paneer Maggie">-</button>
+                            <span id="maggie2" class="quantity-display">0</span>
+                            <button onclick="updateQuantity('maggie2', 1, 60, 'Paneer Maggie')" aria-label="Increase quantity of Paneer Maggie">+</button>
+                        </div>
+                        <button class="order-now" onclick="addToCart('maggie2')" aria-label="Order Paneer Maggie">Order Now</button>
+                    </div>
+                    <div class="menu-item">
+                        <span>Veg Maggie - ₹45</span>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity('maggie3', -1, 45, 'Veg Maggie')" aria-label="Decrease quantity of Veg Maggie">-</button>
+                            <span id="maggie3" class="quantity-display">0</span>
+                            <button onclick="updateQuantity('maggie3', 1, 45, 'Veg Maggie')" aria-label="Increase quantity of Veg Maggie">+</button>
+                        </div>
+                        <button class="order-now" onclick="addToCart('maggie3')" aria-label="Order Veg Maggie">Order Now</button>
+                    </div>
+                    <div class="menu-item">
+                        <span>Corn Maggie - ₹50</span>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity('maggie4', -1, 50, 'Corn Maggie')" aria-label="Decrease quantity of Corn Maggie">-</button>
+                            <span id="maggie4" class="quantity-display">0</span>
+                            <button onclick="updateQuantity('maggie4', 1, 50, 'Corn Maggie')" aria-label="Increase quantity of Corn Maggie">+</button>
+                        </div>
+                        <button class="order-now" onclick="addToCart('maggie4')" aria-label="Order Corn Maggie">Order Now</button>
+                    </div>
+                    <div class="menu-item">
+                        <span>Paneer Cheese Maggie - ₹65</span>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity('maggie5', -1, 65, 'Paneer Cheese Maggie')" aria-label="Decrease quantity of Paneer Cheese Maggie">-</button>
+                            <span id="maggie5" class="quantity-display">0</span>
+                            <button onclick="updateQuantity('maggie5', 1, 65, 'Paneer Cheese Maggie')" aria-label="Increase quantity of Paneer Cheese Maggie">+</button>
+                        </div>
+                        <button class="order-now" onclick="addToCart('maggie5')" aria-label="Order Paneer Cheese Maggie">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="menu-category" onclick="toggleMenuItems('pizza-items')" onkeypress="if(event.key === 'Enter' || event.key === ' ') toggleMenuItems('pizza-items')" tabindex="0">Desi Pizza</div>
+                <div id="pizza-items" class="menu-items">
+                    <div class="menu-item">
+                        <span>Paneer Pizza - ₹75</span>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity('pizza1', -1, 75, 'Paneer Pizza')" aria-label="Decrease quantity of Paneer Pizza">-</button>
+                            <span id="pizza1" class="quantity-display">0</span>
+                            <button onclick="updateQuantity('pizza1', 1, 75, 'Paneer Pizza')" aria-label="Increase quantity of Paneer Pizza">+</button>
+                        </div>
+                        <button class="order-now" onclick="addToCart('pizza1')" aria-label="Order Paneer Pizza">Order Now</button>
+                    </div>
+                    <div class="menu-item">
+                        <span>Veg Pizza - ₹60</span>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity('pizza2', -1, 60, 'Veg Pizza')" aria-label="Decrease quantity of Veg Pizza">-</button>
+                            <span id="pizza2" class="quantity-display">0</span>
+                            <button onclick="updateQuantity('pizza2', 1, 60, 'Veg Pizza')" aria-label="Increase quantity of Veg Pizza">+</button>
+                        </div>
+                        <button class="order-now" onclick="addToCart('pizza2')" aria-label="Order Veg Pizza">Order Now</button>
+                    </div>
+                    <div class="menu-item">
+                        <span>Corn Pizza - ₹70</span>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity('pizza3', -1, 70, 'Corn Pizza')" aria-label="Decrease quantity of Corn Pizza">-</button>
+                            <span id="pizza3" class="quantity-display">0</span>
+                            <button onclick="updateQuantity('pizza3', 1, 70, 'Corn Pizza')" aria-label="Increase quantity of Corn Pizza">+</button>
+                        </div>
+                        <button class="order-now" onclick="addToCart('pizza3')" aria-label="Order Corn Pizza">Order Now</button>
+                    </div>
+                    <div class="menu-item">
+                        <span>Paneer Cheese Cream Pizza - ₹80</span>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity('pizza4', -1, 80, 'Paneer Cheese Cream Pizza')" aria-label="Decrease quantity of Paneer Cheese Cream Pizza">-</button>
+                            <span id="pizza4" class="quantity-display">0</span>
+                            <button onclick="updateQuantity('pizza4', 1, 80, 'Paneer Cheese Cream Pizza')" aria-label="Increase quantity of Paneer Cheese Cream Pizza">+</button>
+                        </div>
+                        <button class="order-now" onclick="addToCart('pizza4')" aria-label="Order Paneer Cheese Cream Pizza">Order Now</button>
+                    </div>
+                    <div class="menu-item">
+                        <span>Onion Corn Pizza - ₹65</span>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity('pizza5', -1, 65, 'Onion Corn Pizza')" aria-label="Decrease quantity of Onion Corn Pizza">-</button>
+                            <span id="pizza5" class="quantity-display">0</span>
+                            <button onclick="updateQuantity('pizza5', 1, 65, 'Onion Corn Pizza')" aria-label="Increase quantity of Onion Corn Pizza">+</button>
+                        </div>
+                        <button class="order-now" onclick="addToCart('pizza5')" aria-label="Order Onion Corn Pizza">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="menu-category" onclick="toggleMenuItems('nashik-items')" onkeypress="if(event.key === 'Enter' || event.key === ' ') toggleMenuItems('nashik-items')" tabindex="0">Nashik Special</div>
+                <div id="nashik-items" class="menu-items">
+                    <div class="menu-item">
+                        <span>Vada Pav - ₹40</span>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity('vada1', -1, 40, 'Vada Pav')" aria-label="Decrease quantity of Vada Pav">-</button>
+                            <span id="vada1" class="quantity-display">0</span>
+                            <button onclick="updateQuantity('vada1', 1, 40, 'Vada Pav')" aria-label="Increase quantity of Vada Pav">+</button>
+                        </div>
+                        <button class="order-now" onclick="addToCart('vada1')" aria-label="Order Vada Pav">Order Now</button>
+                    </div>
+                    <div class="menu-item">
+                        <span>Cheese Vada Pav - ₹50</span>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity('vada2', -1, 50, 'Cheese Vada Pav')" aria-label="Decrease quantity of Cheese Vada Pav">-</button>
+                            <span id="vada2" class="quantity-display">0</span>
+                            <button onclick="updateQuantity('vada2', 1, 50, 'Cheese Vada Pav')" aria-label="Increase quantity of Cheese Vada Pav">+</button>
+                        </div>
+                        <button class="order-now" onclick="addToCart('vada2')" aria-label="Order Cheese Vada Pav">Order Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="cart" class="container">
+            <h2>Your Cart</h2>
+            <p id="cart-empty">Your cart is currently empty.</p>
+            <div id="cart-items"></div>
+            <button id="place-order" class="place-order" onclick="placeOrder()" style="display: none;" aria-label="Place your order">Place Order</button>
+        </div>
+
+        <div id="support" class="container">
+            <h2>Support / Contact Us</h2>
+            <p>Have questions? Feel free to reach out to us!</p>
+            <p><a href="mailto:jatinsomeshmehta@gmail.com" target="_blank" class="button email-button">Email Us</a></p>
+            <p><a href="tel:7993988779" class="button phone-button">Phone</a></p>
+
+            <div class="founders-section">
+                <h3>Our Founders</h3>
+                <div class="founder">
+                    <p><strong>Jatin Somesh Mehta</strong></p>
+                    <p><a href="tel:7993988779" class="button phone-button">Phone</a></p>
+                    <a href="https://api.whatsapp.com/send?phone=7993988779" target="_blank" class="button whatsapp-button">WhatsApp</a>
+                </div>
+                <div class="founder">
+                    <p><strong>Lavanya</strong></p>
+                    <p><a href="tel:9063963929" class="button phone-button">Phone</a></p>
+                    <a href="https://api.whatsapp.com/send?phone=9063963929" target="_blank" class="button whatsapp-button">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Zoro's Kitchen. All rights reserved.</p>
+    </footer>
+</body>
+</html>

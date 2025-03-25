@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details - Zoro's Kitchen</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #FFF3E0;
+            color: #333333;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('logo1.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            z-index: -1;
+            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for text visibility */
+        }
+
+        .main-content {
+            flex: 1 0 auto;
+            padding-bottom: 20px;
+        }
+
+        header {
+            background-color: #F4511E; /* Deeper orange */
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .logo {
+            max-width: 120px;
+            height: auto;
+            margin-right: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .head {
+            font-size: xx-large;
+            margin: 0;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .tagline {
+            font-size: 1.4em;
+            margin: 3px 0;
+            text-align: right;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 90%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #333333;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 1em;
+            color: #333333;
+        }
+
+        .payment-options {
+            margin: 15px 0;
+        }
+
+        .payment-options label {
+            display: inline-block;
+            margin-right: 20px;
+            color: #333333;
+        }
+
+        /* General button style */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.1s;
+            margin: 5px;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        button, .submit-button {
+            background-color: #E23744;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        button:hover, .submit-button:hover {
+            background-color: #C62839;
+        }
+
+        .whatsapp-button {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #20B857;
+        }
+
+        .phone-button {
+            background-color: #F4511E;
+            color: white;
+        }
+
+        .phone-button:hover {
+            background-color: #E23744;
+        }
+
+        #cart-summary {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        #upi-details {
+            display: none;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        #upi-details a {
+            color: #E23744;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        #upi-details a:hover {
+            color: #C62839;
+            text-decoration: underline;
+        }
+
+        #confirmation {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+            color: #28A745;
+            font-size: 1.2em;
+        }
+
+        #confirmation::before {
+            content: "✓ ";
+            font-size: 1.5em;
+        }
+
+        /* Founders Section Styling */
+        .founders-section {
+            background-color: #F9E0D9;
+            border: 2px solid #F4511E;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .founders-section h3 {
+            color: #F4511E;
+            margin-bottom: 15px;
+        }
+
+        .founder {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .founder p {
+            margin: 5px 0;
+        }
+
+        footer {
+            background-color: #F4511E; /* Deeper orange */
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            flex-shrink: 0;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .logo {
+                max-width: 100px;
+                margin-bottom: 10px;
+            }
+            .head {
+                font-size: x-large;
+                text-align: left;
+            }
+            .tagline {
+                font-size: 1em;
+                text-align: left;
+            }
+            .container {
+                max-width: 95%;
+                margin: 10px auto;
+            }
+            .founder {
+                max-width: 300px;
+                margin: 10px auto;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || {};
+            const cartSummary = document.getElementById('cart-summary');
+            let total = 0;
+
+            if (Object.keys(cart).length === 0) {
+                cartSummary.innerHTML = '<p>Your cart is empty.</p>';
+            } else {
+                cartSummary.innerHTML = '<h3>Your Order:</h3>';
+                for (let itemId in cart) {
+                    const item = cart[itemId];
+                    total += item.quantity * item.price;
+                    cartSummary.innerHTML += `
+                        <p>${item.name} x${item.quantity} - ₹${item.quantity * item.price}</p>
+                    `;
+                }
+                cartSummary.innerHTML += `<p><strong>Total: ₹${total}</strong></p>`;
+            }
+
+            // Show/hide UPI details and update UPI intent link with amount
+            const upiLink = document.getElementById('upi-link');
+            document.querySelectorAll('input[name="payment"]').forEach(input => {
+                input.addEventListener('change', () => {
+                    const upiDetails = document.getElementById('upi-details');
+                    upiDetails.style.display = input.value === 'upi' ? 'block' : 'none';
+                    if (input.value === 'upi') {
+                        upiLink.href = `upi://pay?pa=q842207077@ybl&pn=Zoro's Kitchen&am=${total}&cu=INR`;
+                        document.getElementById('total-amount').textContent = total;
+                    }
+                });
+            });
+
+            const handleUpiPayment = async (message, total) => {
+                const upiUrl = `upi://pay?pa=q842207077@ybl&pn=Zoro's Kitchen&am=${total}&cu=INR`;
+                window.open(upiUrl, '_blank');
+
+                alert('Please complete the payment in your UPI app, then return to this page to confirm.');
+                await new Promise(resolve => setTimeout(resolve, 5000)); // 5-second delay
+
+                const paymentConfirmed = confirm(
+                    'Did you complete the payment of ₹' + total + '? Click OK if yes, Cancel if no.\n\n' +
+                    'WARNING: Falsely confirming payment may lead to order cancellation. We will verify the payment.'
+                );
+
+                if (paymentConfirmed) {
+                    message += '\nUPI Payment Pending - Please share payment screenshot on WhatsApp for verification';
+                } else {
+                    const retry = confirm('Payment not confirmed. Would you like to try again? Click OK to retry, Cancel to proceed with order (payment pending).');
+                    if (retry) {
+                        // Retry UPI payment
+                        await handleUpiPayment(message, total);
+                        return; // Exit to avoid duplicate message updates
+                    } else {
+                        message += '\nUPI Payment Pending - Please share payment screenshot on WhatsApp for verification';
+                    }
+                }
+
+                // Proceed to WhatsApp regardless of payment confirmation
+                document.getElementById('confirmation').style.display = 'block';
+                document.getElementById('order-form').style.display = 'none'; // Hide form
+                const encodedMessage = encodeURIComponent(message);
+                window.location.href = `https://api.whatsapp.com/send?phone=7993988779&text=${encodedMessage}`;
+                localStorage.removeItem('cart'); // Clear cart
+            };
+
+            document.getElementById('order-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                // Check if cart is empty or total is 0
+                if (Object.keys(cart).length === 0 || total === 0) {
+                    alert('Cart value is 0. Please select at least 1 item.');
+                    return; // Stop form submission
+                }
+
+                const name = document.getElementById('name').value;
+                const address = document.getElementById('address').value;
+                const contact = document.getElementById('contact').value;
+                const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+                if (name && address && contact && paymentMethod) {
+                    // Create Google Maps search link with the address
+                    const encodedAddress = encodeURIComponent(address);
+                    const mapsLink = `https://www.google.com/maps/search/${encodedAddress}`;
+
+                    let message = `New Order:\nName: ${name}\nAddress: ${address}\nLocation: ${mapsLink}\nContact: ${contact}\nPayment: ${paymentMethod}\n\nItems:\n`;
+                    for (let itemId in cart) {
+                        const item = cart[itemId];
+                        message += `${item.name} x${item.quantity} - ₹${item.quantity * item.price}\n`;
+                    }
+                    message += `Total: ₹${total}`;
+
+                    if (paymentMethod === 'upi') {
+                        await handleUpiPayment(message, total);
+                    } else {
+                        message += '\nCOD Confirmed';
+                        document.getElementById('confirmation').style.display = 'block';
+                        document.getElementById('order-form').style.display = 'none'; // Hide form
+
+                        // Redirect to WhatsApp
+                        const encodedMessage = encodeURIComponent(message);
+                        window.location.href = `https://api.whatsapp.com/send?phone=7993988779&text=${encodedMessage}`;
+                        localStorage.removeItem('cart'); // Clear cart
+                    }
+                } else {
+                    alert('Please fill in all fields and select a payment method.');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="logo.png" alt="Zoro's Kitchen Logo" class="logo">
+            <h1 class="head">Zoro's Kitchen</h1>
+            <p class="tagline">Deliciousness Delivered to Your Doorstep</p>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="container">
+            <h2>Complete Your Order</h2>
+            <div id="cart-summary"></div>
+            <form id="order-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="4" required></textarea>
+
+                <label for="contact">Contact Number:</label>
+                <input type="tel" id="contact" name="contact" required>
+
+                <div class="payment-options">
+                    <label><input type="radio" name="payment" value="cod" checked> Cash on Delivery (COD)</label>
+                    <label><input type="radio" name="payment" value="upi"> UPI</label>
+                </div>
+
+                <div id="upi-details">
+                    <p>Pay via UPI: <strong>q842207077@ybl</strong></p>
+                    <p><a id="upi-link" href="#" target="_blank">Click here to pay ₹<span id="total-amount">0</span></a></p>
+                    <p>After payment, return to this page to confirm.</p>
+                </div>
+
+                <button type="submit" class="submit-button">Confirm Order</button>
+            </form>
+
+            <div id="confirmation">Order Confirmed!</div>
+        </div>
+
+        
+
+    <footer>
+        <p>© 2025 Zoro's Kitchen. All rights reserved.</p>
+    </footer>
+</body>
+</html>
