@@ -14,7 +14,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            background-color: #FFF3E0;
+            background-color: #FFF8E1; /* Cream background for warmth */
             color: #333333;
             position: relative;
         }
@@ -30,9 +30,9 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.3;
+            opacity: 0.2;
             z-index: -1;
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.3);
         }
 
         .main-content {
@@ -41,8 +41,8 @@
         }
 
         header {
-            background-color: #F4511E;
-            color: white;
+            background: linear-gradient(to right, #FF6F00, #D32F2F); /* Orange to red gradient for appetite */
+            color: #FFFFFF;
             padding: 15px 20px;
             display: flex;
             align-items: center;
@@ -61,29 +61,32 @@
             max-width: 120px;
             height: auto;
             margin-right: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 5px;
             border-radius: 5px;
         }
 
         .head {
             font-size: xx-large;
-            margin: 5;
-            text-align: middle;
-            padding: 0 50px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-family: 'Georgia', serif;
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Re-added text-shadow */
         }
 
         .tagline {
-            font-size: 1.2em;
-            margin: 1px 0;
+            font-size: 1em;
+            margin: 0;
             text-align: right;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-style: italic;
+            white-space: nowrap;
         }
 
         .banner {
-            background-color: #E23744;
-            color: white;
+            background-color: #FFCCBC;
+            color: #4E342E;
             padding: 10px 0;
             overflow: hidden;
             position: relative;
@@ -99,6 +102,8 @@
             font-size: 1.1em;
             white-space: nowrap;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            align-content: left;
+            margin: 0 auto;
         }
 
         @keyframes scroll {
@@ -113,30 +118,31 @@
         nav {
             display: flex;
             justify-content: space-around;
-            background-color: #F4511E;
+            background: linear-gradient(to right, #FF6F00, #D32F2F);
             padding: 10px 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         nav a {
             text-decoration: none;
-            color: white;
+            color: #FFFFFF;
             font-weight: bold;
-            transition: color 0.3s;
+            transition: color 0.3s, background-color 0.3s;
             padding: 8px 15px;
             border-radius: 5px;
         }
 
         nav a:hover {
             text-decoration: underline;
-            color: #E23744;
-            background-color: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            background-color: #D32F2F;
         }
 
         .container {
             padding: 20px;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: #FFCCBC;
+            border: 2px solid #A5D6A7;
             border-radius: 10px;
             margin: 20px auto;
             max-width: 90%;
@@ -145,7 +151,8 @@
 
         /* General button style */
         .button {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
@@ -154,20 +161,85 @@
             font-size: 1em;
             font-weight: bold;
             transition: background-color 0.3s, transform 0.1s;
-            margin: 5px; /* Added spacing between buttons */
+            margin: 5px;
         }
 
         .button:hover {
             transform: translateY(-2px);
         }
 
+        .button-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+        }
+
+        .button span {
+            display: inline-block;
+        }
+
         .zomato-button {
-            background-color: #E23744;
-            color: white;
+            background-color: #FF2A00;
+            color: #FFFFFF;
+        } 
+        
+        .email-button {
+            background-color: #ff6f00;
+            color: #ffffff;
+        }
+        
+        .phone-button{
+            background-color: #FF6F00;
+            color: #FFFFFF;
+        }
+
+        .order-now{
+            background-color: #FF0000;
+            color: #FFFFFF;
+            border: none;
+        }
+        
+        .place-order{
+            border: none;
+            background-color: #ff2a00;
+            color: #ffffff;
+            border-radius: 5px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            display: none;
+            transition: background-color 0.3s;
+        }
+
+        .quantity-controls button {
+            background-color: #ff2a00;
+            color: #ffffff;
+            position: center;
+            border: none;
         }
 
         .zomato-button:hover {
-            background-color: #C62839;
+            background-color: #ff2a00
+        } 
+        
+        .email-button:hover {
+            background-color: #c71610
+        }
+        
+        .phone-button:hover {
+            background-color: #FF2A00
+        }
+
+        .order-now:hover{
+            background-color: #FF2A00
+        }
+        
+        .place-order:hover{
+            background-color: #FF2A00
+        }
+        
+        .quantity-controls button:hover {
+            background-color: #ff2a00;
         }
 
         .whatsapp-button {
@@ -179,28 +251,9 @@
             background-color: #20B857;
         }
 
-        .email-button {
-            background-color: #E23744;
-            color: white;
-        }
-
-        .email-button:hover {
-            background-color: #C62839;
-        }
-
-        /* New phone button style */
-        .phone-button {
-            background-color: #F4511E; /* Match the deeper orange theme */
-            color: white;
-        }
-
-        .phone-button:hover {
-            background-color: #E23744; /* Match the hover color of other buttons */
-        }
-
         footer {
-            background-color: #F4511E;
-            color: white;
+            background: linear-gradient(to right, #FF6F00, #D32F2F);
+            color: #FFFFFF;
             text-align: center;
             padding: 10px;
             width: 100%;
@@ -219,8 +272,8 @@
 
         .menu-category {
             cursor: pointer;
-            background-color: #F4511E;
-            color: white;
+            background-color: #FF6F00;
+            color: #FFFFFF;
             padding: 10px;
             border-radius: 5px;
             margin-bottom: 10px;
@@ -228,7 +281,7 @@
         }
 
         .menu-category:hover {
-            background-color: #E23744;
+            background-color: #D32F2F;
         }
 
         .menu-items {
@@ -242,7 +295,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px;
-            background-color: white;
+            background-color: #FFFFFF;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             transition: transform 0.2s;
@@ -254,18 +307,16 @@
 
         .menu-item span {
             font-weight: bold;
-            color: #333333;
+            color: #4E342E;
         }
 
         .quantity-controls {
-            display: flex;
+            display: static;
             align-items: center;
             gap: 10px;
         }
 
         .quantity-controls button {
-            background-color: #E23744;
-            color: white;
             border: none;
             border-radius: 50%;
             width: 24px;
@@ -273,10 +324,6 @@
             cursor: pointer;
             font-size: 16px;
             transition: background-color 0.3s;
-        }
-
-        .quantity-controls button:hover {
-            background-color: #C62839;
         }
 
         .quantity-display {
@@ -287,8 +334,6 @@
         }
 
         .order-now {
-            background-color: #E23744;
-            color: white;
             border: none;
             border-radius: 5px;
             padding: 8px 16px;
@@ -298,16 +343,12 @@
             transition: background-color 0.3s;
         }
 
-        .order-now:hover {
-            background-color: #C62839;
-        }
-
         .cart-item {
             display: flex;
             justify-content: space-between;
             padding: 10px;
             margin: 10px 0;
-            background-color: white;
+            background-color: #FFFFFF;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
@@ -319,26 +360,10 @@
             color: #333333;
         }
 
-        .place-order {
-            background-color: #E23744;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            margin-top: 20px;
-            transition: background-color 0.3s;
-        }
-
-        .place-order:hover {
-            background-color: #C62839;
-        }
-
         /* Founders Section Styling */
         .founders-section {
-            background-color: #F9E0D9;
-            border: 2px solid #F4511E;
+            background-color: #FFAB91;
+            border: 2px solid #FF6F00;
             border-radius: 10px;
             padding: 20px;
             margin-top: 20px;
@@ -346,12 +371,12 @@
         }
 
         .founders-section h3 {
-            color: #F4511E;
+            color: #4E342E;
             margin-bottom: 15px;
         }
 
         .founder {
-            background-color: white;
+            background-color: #FFFFFF;
             border-radius: 8px;
             padding: 15px;
             margin: 10px 0;
@@ -377,10 +402,12 @@
             }
             .head {
                 font-size: x-large;
-                text-align: left;
+                text-align: center;
+                width: 100%;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
             }
             .tagline {
-                font-size: 1em;
+                font-size: 0.9em;
                 text-align: left;
             }
             .menu-section {
@@ -400,7 +427,7 @@
                 margin: 10px auto;
             }
             .founder {
-                max-width: 300px; /* Prevent stretching on mobile */
+                max-width: 300px;
                 margin: 10px auto;
             }
         }
@@ -524,7 +551,7 @@
     <div class="banner">
         <div class="banner-text">
             Free Delivery Upto 3kms - Above 3kms ₹20 charged for every 2 kms<br>
-                            We undertake Party Orders T&C Apply
+             We undertake Party Orders T&C Apply
         </div>
     </div>
 
@@ -539,9 +566,13 @@
         <div id="home" class="container">
             <h2>Welcome to Zoro's Kitchen</h2>
             <p>We are now on Zomato! Order your favorite dishes now.</p>
-            <a class="button zomato-button" href="https://www.zomato.com/hyderabad/zoros-kitchen-boiguda-secunderabad/order" target="_blank">Order on Zomato</a>
+            <a class="button zomato-button" href="https://www.zomato.com/hyderabad/zoros-kitchen-boiguda-secunderabad/order" target="_blank">
+                <img src="zomato.png" alt="Zomato Icon" class="button-icon"> <span>Order on Zomato</span>
+            </a>
             <p>Need help or want to place an order? Contact us on WhatsApp!</p>
-            <a class="button whatsapp-button" href="https://api.whatsapp.com/send?phone=7993988779" target="_blank">Chat with us on WhatsApp</a>
+            <a class="button whatsapp-button" href="https://api.whatsapp.com/send?phone=7993988779" target="_blank">
+                <img src="whatsapp.png" alt="WhatsApp Icon" class="button-icon"> <span>Chat with us on WhatsApp</span>
+            </a>
         </div>
 
         <div id="menu" class="container">
@@ -679,20 +710,40 @@
         <div id="support" class="container">
             <h2>Support / Contact Us</h2>
             <p>Have questions? Feel free to reach out to us!</p>
-            <p><a href="mailto:jatinsomeshmehta@gmail.com" target="_blank" class="button email-button">Email Us</a></p>
-            <p><a href="tel:7993988779" class="button phone-button">Phone</a></p>
+            <p>
+                <a href="/cdn-cgi/l/email-protection#1c767d6875726f7371796f74717974687d5c7b717d7570327f7371" target="_blank" class="button email-button">
+                    <img src="mail.png" alt="Email Icon" class="button-icon"> <span>Email Us</span>
+                </a>
+            </p>
+            <p>
+                <a href="tel:7993988779" class="button phone-button">
+                    <img src="phone.png" alt="Phone Icon" class="button-icon"> <span>Phone</span>
+                </a>
+            </p>
 
             <div class="founders-section">
                 <h3>Our Founders</h3>
                 <div class="founder">
                     <p><strong>Jatin Somesh Mehta</strong></p>
-                    <p><a href="tel:7993988779" class="button phone-button">Phone</a></p>
-                    <a href="https://api.whatsapp.com/send?phone=7993988779" target="_blank" class="button whatsapp-button">WhatsApp</a>
+                    <p>
+                        <a href="tel:7993988779" class="button phone-button">
+                            <img src="phone.png" alt="Phone Icon" class="button-icon"> <span>Phone</span>
+                        </a>
+                    </p>
+                    <a href="https://api.whatsapp.com/send?phone=7993988779" target="_blank" class="button whatsapp-button">
+                        <img src="whatsapp.png" alt="WhatsApp Icon" class="button-icon"> <span>WhatsApp</span>
+                    </a>
                 </div>
                 <div class="founder">
                     <p><strong>Lavanya</strong></p>
-                    <p><a href="tel:9063963929" class="button phone-button">Phone</a></p>
-                    <a href="https://api.whatsapp.com/send?phone=9063963929" target="_blank" class="button whatsapp-button">WhatsApp</a>
+                    <p>
+                        <a href="tel:9063963929" class="button phone-button">
+                            <img src="phone.png" alt="Phone Icon" class="button-icon"> <span>Phone</span>
+                        </a>
+                    </p>
+                    <a href="https://api.whatsapp.com/send?phone=9063963929" target="_blank" class="button whatsapp-button">
+                        <img src="whatsapp.png" alt="WhatsApp Icon" class="button-icon"> <span>WhatsApp</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -701,5 +752,5 @@
     <footer>
         <p>© 2025 Zoro's Kitchen. All rights reserved.</p>
     </footer>
-</body>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92750a8abee77b93',t:'MTc0MzE0MzAzMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
